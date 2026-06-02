@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const adminRouter = require("./routes/users/admin_router.js");
 const userRouter = require("./routes/users/user_router.js");
+const rootRouter = require("./routes/root/root_router.js");
 require('dotenv').config();
 
 const app = express();
@@ -20,6 +21,8 @@ app.use((request, response, next) => {
 app.use(express.json());
 
 app.use("/admin", adminRouter);
+
+app.use("/", rootRouter);
 
 app.use(userRouter);
 
