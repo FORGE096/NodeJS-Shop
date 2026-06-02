@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const adminRouter = require("./routes/users/admin_router.js");
 const userRouter = require("./routes/users/user_router.js");
+require('dotenv').config();
 
 const app = express();
 const PORT = 65510;
@@ -22,7 +23,7 @@ app.use("/admin", adminRouter);
 
 app.use(userRouter);
 
-mongoose.connect("mongodb://localhost/Shop").then(result => console.log("Connected")).catch(error => console.log(error));
+mongoose.connect(process.env.MONGO_URI).then(result => console.log("Connected")).catch(error => console.log(error));
 
 
 app.listen(PORT, () => {
