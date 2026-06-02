@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const adminRouter = require("./routes/users/admin_router.js");
-const userRouter = require("./routes/users/user_router.js");
+const shopRouter = require("./routes/shop/shop_router.js");
 const rootRouter = require("./routes/root/root_router.js");
+const userRouter = require("./routes/users/user_router.js");
 require('dotenv').config();
 
 const app = express();
@@ -24,7 +25,9 @@ app.use("/admin", adminRouter);
 
 app.use("/", rootRouter);
 
-app.use("/buy", userRouter);
+app.use("/buy", shopRouter);
+
+app.use("/user", userRouter);
 
 mongoose.connect(process.env.MONGO_URI).then(result => console.log("Connected")).catch(error => console.log(error));
 
